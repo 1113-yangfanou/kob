@@ -1,37 +1,24 @@
 <template>
-<div>name: {{ name }}</div>
-<div>grade: {{grade}}</div>
+  <NavBar/>
+  <router-view></router-view>
 </template>
 
 <script>
-import $ from 'jquery';
-import { ref } from 'vue';
+import NavBar from '@/components/NavBar.vue'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap"
+
 
 export default {
-  name: "App",
-  setup: () => {
-    let name = ref("");
-    let grade = ref("");
-    $.ajax({
-      url:"http://localhost:3000/pk/getInfo/",
-      type:"get",
-      success: resp => {
-        name.value = resp.name;
-        grade.value = resp.grade;
-      }
-    });
-    return {
-      name,
-      grade
-    }
-  }
+
+    components: { NavBar }
 }
 
 </script>
 
 <style>
 body{
-  background-image: url(@/assets/background.png);
+  background-image: url(@/assets/images/background.png);
   background-size: cover;
 }
 </style>
