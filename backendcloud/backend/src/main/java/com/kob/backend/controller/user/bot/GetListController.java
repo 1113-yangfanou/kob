@@ -10,11 +10,10 @@ import java.util.List;
 
 @RestController
 public class GetListController {
-
     @Autowired
     private GetListService getListService;
 
-    @GetMapping("/user/bot/getlist/")
+    @GetMapping("/api/user/bot/getlist/")
     public List<Bot> getList() {
         return getListService.getList();
     }

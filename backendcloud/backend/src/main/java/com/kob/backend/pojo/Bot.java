@@ -15,7 +15,7 @@ import java.util.Date;
 public class Bot {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer userId; // 数据库用下划线，java用驼峰命名才能对应
+    private Integer userId;
     private String title;
     private String description;
     private String content;

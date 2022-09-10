@@ -15,7 +15,6 @@ import java.util.List;
 
 @Service
 public class GetListServiceImpl implements GetListService {
-
     @Autowired
     private BotMapper botMapper;
 
@@ -28,6 +27,7 @@ public class GetListServiceImpl implements GetListService {
 
         QueryWrapper<Bot> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", user.getId());
+
         return botMapper.selectList(queryWrapper);
     }
 }

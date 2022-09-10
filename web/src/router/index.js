@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PkIndexView from '../views/pk/PkIndexView'
 import RecordIndexView from '../views/record/RecordIndexView'
+import RecordContentView from '../views/record/RecordContentView'
 import RanklistIndexView from '../views/ranklist/RanklistIndexView'
 import UserBotIndexView from '../views/user/bot/UserBotIndexView'
 import NotFound from '../views/error/NotFound'
-import UserAccountLoginView from '../views/user/account/UserAccountLoginView.vue'
-import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView.vue' 
-import store from "@/store/index"
+import UserAccountLoginView from '../views/user/account/UserAccountLoginView'
+import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView'
+import store from '../store/index'
 
 const routes = [
   {
@@ -29,6 +30,14 @@ const routes = [
     path: "/record/",
     name: "record_index",
     component: RecordIndexView,
+    meta: {
+      requestAuth: true,
+    }
+  },
+  {
+    path: "/record/:recordId/",
+    name: "record_content",
+    component: RecordContentView,
     meta: {
       requestAuth: true,
     }
@@ -67,7 +76,7 @@ const routes = [
   },
   {
     path: "/404/",
-    name: "not_found",
+    name: "404",
     component: NotFound,
     meta: {
       requestAuth: false,
@@ -84,9 +93,8 @@ const router = createRouter({
   routes
 })
 
-
 router.beforeEach((to, from, next) => {
-  if(to.meta.requestAuth && !store.state.user.is_login) {
+  if (to.meta.requestAuth && !store.state.user.is_login) {
     next({name: "user_account_login"});
   } else {
     next();

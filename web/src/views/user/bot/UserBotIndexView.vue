@@ -7,10 +7,7 @@
                         <img :src="$store.state.user.photo" alt="" style="width: 100%;">
                     </div>
                 </div>
-            <div class="col-3">
-                    
             </div>
-        </div>
             <div class="col-9">
                 <div class="card" style="margin-top: 20px;">
                     <div class="card-header">
@@ -125,11 +122,9 @@ import { Modal } from 'bootstrap/dist/js/bootstrap'
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 
-
 export default {
     components: {
-        VAceEditor,
-
+        VAceEditor
     },
     setup() {
         ace.config.set(
@@ -148,7 +143,7 @@ export default {
 
         const refresh_bots = () => {
             $.ajax({
-                url: "http://127.0.0.1:3000/user/bot/getlist/",
+                url: "https://app3366.acapp.acwing.com.cn/api/user/bot/getlist/",
                 type: "get",
                 headers: {
                     Authorization: "Bearer " + store.state.user.token,
@@ -164,7 +159,7 @@ export default {
         const add_bot = () => {
             botadd.error_message = "";
             $.ajax({
-                url: "http://127.0.0.1:3000/user/bot/add/",
+                url: "https://app3366.acapp.acwing.com.cn/api/user/bot/add/",
                 type: "post",
                 data: {
                     title: botadd.title,
@@ -191,7 +186,7 @@ export default {
         const update_bot = (bot) => {
             botadd.error_message = "";
             $.ajax({
-                url: "http://127.0.0.1:3000/user/bot/update/",
+                url: "https://app3366.acapp.acwing.com.cn/api/user/bot/update/",
                 type: "post",
                 data: {
                     bot_id: bot.id,
@@ -215,7 +210,7 @@ export default {
 
         const remove_bot = (bot) => {
             $.ajax({
-                url: "http://127.0.0.1:3000/user/bot/remove/",
+                url: "https://app3366.acapp.acwing.com.cn/api/user/bot/remove/",
                 type: "post",
                 data: {
                     bot_id: bot.id,
@@ -243,11 +238,6 @@ export default {
 </script>
 
 <style scoped>
-
-button {
-    width: auto;
-}
-
 div.error-message {
     color: red;
 }

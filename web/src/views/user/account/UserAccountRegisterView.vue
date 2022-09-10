@@ -1,7 +1,6 @@
 <template>
-
     <ContentField>
-        <div class="row  justify-content-md-center">
+        <div class="row justify-content-md-center">
             <div class="col-3">
                 <form @submit.prevent="register">
                     <div class="mb-3">
@@ -16,27 +15,25 @@
                         <label for="confirmedPassword" class="form-label">确认密码</label>
                         <input v-model="confirmedPassword" type="password" class="form-control" id="confirmedPassword" placeholder="请再次输入密码">
                     </div>
-                    <div class="error-message"> {{error_message}}</div>
-                    <button type="submit" class="btn btn-primary">注册</button>
+                    <div class="error-message">{{ error_message }}</div>
+                    <button type="submit" class="btn btn-primary">提交</button>
                 </form>
             </div>
         </div>
     </ContentField>
-
 </template>
 
-
 <script>
-import ContentField from '../../../components/ContentField.vue' 
+import ContentField from '../../../components/ContentField.vue'
 import { ref } from 'vue'
-import router from '@/router'
-import $ from "jquery"
+import router from '../../../router/index'
+import $ from 'jquery'
+
 export default {
     components: {
         ContentField
     },
     setup() {
-
         let username = ref('');
         let password = ref('');
         let confirmedPassword = ref('');
@@ -44,22 +41,21 @@ export default {
 
         const register = () => {
             $.ajax({
-                url: "http://127.0.0.1:3000/user/account/register/",
+                url: "https://app3366.acapp.acwing.com.cn/api/user/account/register/",
                 type: "post",
                 data: {
                     username: username.value,
                     password: password.value,
                     confirmedPassword: confirmedPassword.value,
                 },
-                success(resp){
-                    if(resp.error_message === "success") {
+                success(resp) {
+                    if (resp.error_message === "success") {
                         router.push({name: "user_account_login"});
                     } else {
                         error_message.value = resp.error_message;
                     }
                 },
-                
-            })
+            });
         }
 
         return {
@@ -68,14 +64,17 @@ export default {
             confirmedPassword,
             error_message,
             register,
-
         }
-
     }
 }
-
 </script>
 
-<script scope>
+<style scoped>
+button {
+    width: 100%;
+}
 
-</script>
+div.error-message {
+    color: red;
+}
+</style>

@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Record {
     @TableId(type = IdType.AUTO)
     private Integer id;
